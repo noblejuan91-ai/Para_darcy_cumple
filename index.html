@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para Darcy ✨</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="neb"><i class="n1"></i><i class="n2"></i><i class="n3"></i><i class="n4"></i></div>
+<canvas id="c"></canvas>
+<div class="spot" id="spot"></div>
+<div id="flash"></div>
+
+<div class="stage">
+
+  <!-- Escena 1 -->
+  <section class="scene active" id="s1">
+    <div class="guide">✦</div>
+    <p class="fade-in">Hay millones de estrellas en el universo...</p>
+    <p class="fade-in" style="animation-delay:1.6s">Pero hoy, una de ellas tiene algo que decirte.</p>
+    <button class="btn fade-in" style="animation-delay:3s" data-next="2">Comenzar el viaje</button>
+  </section>
+
+  <!-- Escena 2 -->
+  <section class="scene" id="s2">
+    <h2>Constelación de fragmentos</h2>
+    <p style="font-size:.95rem;opacity:.85">Toca las tres estrellas guardianas para descubrir nuestros fragmentos:</p>
+    <div class="consts" id="consts">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+        <line x1="18" y1="32" x2="52" y2="72"/><line x1="52" y1="72" x2="82" y2="26"/>
+      </svg>
+      <div class="node" style="left:18%;top:32%" data-i="0"></div>
+      <div class="node" style="left:52%;top:72%" data-i="1"></div>
+      <div class="node" style="left:82%;top:26%" data-i="2"></div>
+    </div>
+    <div class="scroll" id="scroll"><p class="empty">Toca cada estrella arriba para revelar los fragmentos... ✨</p></div>
+    <button class="btn hidden" id="b2" data-next="3">Continuar</button>
+  </section>
+
+  <!-- Escena 3 -->
+  <section class="scene" id="s3">
+    <p class="fade-in" style="animation-delay:.5s;font-size:1.25rem">Si pudiera enseñarte cómo te veo, quizá tendría que llevarte más allá de las galaxias.</p>
+    <p class="fade-in" style="animation-delay:2.5s;font-size:1.25rem;color:var(--gold)">Pero hay una estrella especial que quiero mostrarte...</p>
+    <button class="btn fade-in" style="animation-delay:4.5s" id="b3">Continuar</button>
+  </section>
+
+  <!-- Escena 4 -->
+  <section class="scene" id="s4">
+    <p style="font-size:.95rem;color:#7dffb0;margin:0 0 12px">📡 Escaneo cósmico completado con éxito:</p>
+    <div class="polaroid" id="pol">
+      <div class="ph" id="ph"><span id="phEmoji" style="display:none">📷</span><div class="laser"></div></div>
+      <div style="position:absolute;left:0;right:0;bottom:7px;color:#3a2a14;font-size:.82rem;font-family:'Courier New',monospace">JAJAJAJA, La mejor foto. ❤️</div>
+    </div>
+    <div class="ficha">
+      <b>FICHA DE IDENTIFICACIÓN CÓSMICA</b><br>
+      &gt; Nombre: Darcy González<br>
+      &gt; Estado: Mi persona favorita en todo el universo ✨<br>
+      &gt; Observación: Mi casualidad favorita y mi mejor elección 💖
+    </div>
+    <p style="font-size:.95rem;margin:10px 0 0">Quién iba a imaginar que esa pequeñita se convertiría en alguien tan importante.</p>
+    <p class="hint">Mantén presionada la foto…</p>
+    <button class="btn small" data-next="5">Continuar</button>
+  </section>
+
+  <!-- Escena 5 -->
+  <section class="scene" id="s5">
+    <p id="i5" style="margin-bottom:26px">Hay algo de ti que siempre atrapa mi atención desde el primer instante...</p>
+    <div class="neon" id="neon"></div>
+    <p id="t5" style="opacity:0;transition:opacity 2s"></p>
+    <button class="btn hidden" id="b5" data-next="6">Continuar</button>
+  </section>
+
+  <!-- Escena 6 -->
+  <section class="scene" id="s6">
+    <h2 style="color:var(--gold);margin-bottom:14px;font-size:1.3rem">Para ti, en tus 18 vueltas al sol ✨</h2>
+    <div class="papiro" id="papiro"></div>
+    <div>
+      <button class="btn small" id="skip6">Mostrar completa</button>
+      <button class="btn small hidden" id="b6" data-next="7">Continuar</button>
+    </div>
+  </section>
+
+  <!-- Escena 7 -->
+  <section class="scene" id="s7">
+    <p style="font-size:1.3rem">Entre todas las cosas bonitas que existen en este universo, hay una que nunca quiero dar por sentada:</p>
+    <p style="font-size:1.4rem;color:var(--pink)">Haberte encontrado, Cielo. ❤️</p>
+    <div class="date">23 DE OCTUBRE DE 2026 · 18 AÑOS</div>
+    <div class="date" id="cosmicTimer" style="margin-top:10px;letter-spacing:1px"></div>
+    <button class="btn" data-next="8">Una última cosa</button>
+  </section>
+
+  <!-- Escena 8 -->
+  <section class="scene" id="s8" style="justify-content:flex-end;padding-bottom:70px">
+    <p class="final" id="t8" style="opacity:0;transition:opacity 3s">Y si pudiera elegir un lugar en todo este universo,<br>volvería a elegirte a ti.<br><br>Feliz cumpleaños, mi amor. ❤️</p>
+  </section>
+</div>
+
+<div class="orb" id="orb"></div>
+<div class="secret" id="secret">✨ Cada estrella eligió su camino para encontrarte</div>
+<div class="note" id="note"><div id="noteTxt"></div></div>
+<div class="mini" id="mini"><div class="in"><div class="f"><div id="miniImg"></div></div><div class="b">❤</div></div></div>
+<button id="mute" aria-label="Sonido">🔊</button>
+<audio id="aud" loop preload="auto">
+  <source src="siempre_sere.mp3" type="audio/mpeg">
+  <source src="siempre_sere.m4a" type="audio/mp4">
+  <source src="siempre_sere.mp4" type="audio/mp4">
+  <source src="siempre_sere.wav" type="audio/wav">
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+:root{--gold:#ffd27a;--pink:#ff8fb8;--blue:#8fc7ff;--ink:#f4f1ff}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#030308;color:var(--ink);font-family:Georgia,'Times New Roman',serif;overflow:hidden;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+#c{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.stage{position:fixed;z-index:2;left:50%;top:0;transform:translateX(-50%);width:100%;max-width:480px;height:100%;height:100dvh}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 24px;text-align:center;opacity:0;pointer-events:none;transition:opacity 1s ease;overflow-y:auto}
+.scene.active{opacity:1;pointer-events:auto}
+h1,h2{font-weight:normal;letter-spacing:.5px}
+p{line-height:1.6;font-size:1.12rem;margin:10px 0}
+.btn{margin-top:22px;padding:13px 30px;border:1px solid var(--gold);background:rgba(255,210,122,.08);color:var(--gold);border-radius:40px;font-family:inherit;font-size:1rem;letter-spacing:1px;cursor:pointer;box-shadow:0 0 18px rgba(255,210,122,.25);transition:.25s}
+.btn:active{transform:scale(.96);background:rgba(255,210,122,.25)}
+.btn.hidden{display:none}
+.btn.small{padding:8px 18px;font-size:.85rem;margin-top:12px}
+.fade-in{animation:fadeIn 1.6s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* scene 1 */
+.guide{font-size:2.6rem;animation:twinkle 2s infinite ease-in-out;margin-bottom:26px;filter:drop-shadow(0 0 14px #fff)}
+@keyframes twinkle{0%,100%{opacity:.4;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+.orb{position:fixed;right:20px;bottom:86px;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,var(--blue) 45%,transparent 72%);animation:float 4s infinite ease-in-out;z-index:6;cursor:pointer;display:none;box-shadow:0 0 20px var(--blue)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.secret{position:fixed;left:50%;bottom:140px;transform:translateX(-50%);z-index:7;background:rgba(10,10,30,.85);border:1px solid var(--blue);padding:12px 18px;border-radius:14px;font-size:.95rem;opacity:0;transition:.6s;pointer-events:none;max-width:86%;text-align:center}
+.secret.show{opacity:1}
+
+/* scene 2 */
+.consts{position:relative;width:100%;height:210px;margin:10px 0}
+.consts svg{position:absolute;inset:0;width:100%;height:100%}
+.consts line{stroke:var(--gold);stroke-width:.6;opacity:0;transition:opacity 1.5s}
+.consts.linked line{opacity:.8}
+.node{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:radial-gradient(circle,#fff 0,var(--gold) 30%,transparent 70%);cursor:pointer;animation:twinkle 2.4s infinite}
+.node.done{animation:none;opacity:.9;background:radial-gradient(circle,#fff 0,var(--pink) 35%,transparent 72%)}
+.scroll{width:100%;max-height:36vh;overflow-y:auto;background:linear-gradient(#2a1f10cc,#1a1208cc);border:1px solid #8a6a2b;border-radius:10px;padding:12px 16px;font-size:.98rem;text-align:left}
+.scroll p{font-size:.98rem;margin:8px 0;animation:fadeIn 1s both}
+.scroll .empty{opacity:.55;text-align:center;font-style:italic}
+
+/* scene 4 */
+.polaroid{position:relative;background:#f5f0e6;padding:12px 12px 34px;border-radius:4px;width:230px;box-shadow:0 10px 40px rgba(0,0,0,.7);transform:rotate(-3deg);overflow:hidden}
+.polaroid .ph{width:100%;height:230px;background:#222 center/cover;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.laser{position:absolute;left:0;right:0;height:3px;background:#39ff88;box-shadow:0 0 14px 4px #39ff88;animation:scan 2.6s infinite linear;top:0}
+@keyframes scan{0%{top:0}50%{top:100%}100%{top:0}}
+.ficha{margin-top:16px;text-align:left;font-family:'Courier New',monospace;font-size:.88rem;color:#7dffb0;line-height:1.7;background:rgba(0,30,15,.55);border:1px solid #1e8a52;padding:10px 14px;border-radius:8px;width:100%;max-width:330px}
+.hint{font-size:.78rem;opacity:.6;margin-top:8px}
+.note{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;padding:30px}
+.note.show{display:flex}
+.note div{background:#f5ecd6;color:#3a2a14;padding:26px;border-radius:6px;max-width:360px;line-height:1.6;box-shadow:0 0 40px var(--gold);animation:fadeIn .8s both}
+.mini{position:fixed;top:14px;left:14px;width:58px;height:70px;z-index:8;perspective:400px;display:none;cursor:pointer}
+.mini .in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .9s;animation:bob 4s infinite ease-in-out}
+.mini.flip .in{transform:rotateY(180deg)}
+.mini .f,.mini .b{position:absolute;inset:0;backface-visibility:hidden;background:#f5f0e6;padding:4px 4px 14px;border-radius:2px;box-shadow:0 4px 14px rgba(0,0,0,.7)}
+.mini .f div{width:100%;height:100%;background:#222 center/cover}
+.mini .b{transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;color:#d33;font-size:1.4rem}
+@keyframes bob{0%,100%{margin-top:0}50%{margin-top:5px}}
+
+/* scene 5 */
+.spot{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity 2s;background:radial-gradient(ellipse at 50% 0%,rgba(255,200,120,.28),transparent 60%),rgba(0,0,0,.45)}
+.spot.on{opacity:1}
+.neon{font-size:3.2rem;color:#fff;text-shadow:0 0 8px #fff,0 0 20px var(--pink),0 0 42px var(--pink),0 0 80px #ff3d8a;min-height:4.2rem;letter-spacing:2px}
+
+/* scene 6 */
+.papiro{border:2px solid var(--gold);border-radius:14px;padding:18px 18px;width:100%;max-height:62vh;overflow-y:auto;background:rgba(30,20,5,.55);text-align:left;font-size:1rem;line-height:1.65;animation:goldPulse 2.4s infinite ease-in-out;white-space:pre-wrap}
+@keyframes goldPulse{0%,100%{box-shadow:0 0 8px rgba(255,210,122,.35),inset 0 0 8px rgba(255,210,122,.1)}50%{box-shadow:0 0 28px rgba(255,210,122,.9),inset 0 0 16px rgba(255,210,122,.3)}}
+.date{margin-top:18px;letter-spacing:3px;color:var(--gold);font-size:.9rem}
+/* audio */
+#mute{position:fixed;right:16px;bottom:18px;z-index:9;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.4);color:#fff;font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#flash{position:fixed;inset:0;z-index:15;background:#fff;opacity:0;pointer-events:none}
+#flash.go{animation:nova 2.4s ease-out}
+@keyframes nova{0%{opacity:0}12%{opacity:1}100%{opacity:0}}
+.final{font-size:1.25rem;text-shadow:0 0 14px rgba(255,143,184,.8)}
+
+/* Estilo para los stickers cayendo en bucle sin cruzarse */
+.floating-sticker {
+  position: fixed;
+  width: 55px;
+  height: auto;
+  pointer-events: auto; /* <--- Cambia 'none' por 'auto' aquí */
+  cursor: pointer;      /* <--- Agrégalo justo debajo para que salga la manita en la PC */
+  z-index: 50;
+  animation: fallDown linear infinite;
+  opacity: 0.9;
+}
+
+
+@keyframes fallDown {
+  0% {
+    transform: translateY(-80px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(calc(100vh + 100px)) rotate(360deg);
+  }
+}
+
+/* nebulosas */
+#neb{position:fixed;inset:0;z-index:0;overflow:hidden;background:radial-gradient(ellipse at 50% 120%,#120a24 0%,#030308 70%)}
+#neb i{position:absolute;border-radius:50%;will-change:transform;opacity:0}
+#neb .n1{width:90vmax;height:90vmax;left:-35vmax;top:-30vmax;background:radial-gradient(circle,rgba(255,110,170,.42) 0%,rgba(255,110,170,.14) 40%,transparent 68%);animation:nebIn 5s ease forwards,drift1 38s ease-in-out infinite alternate}
+#neb .n2{width:100vmax;height:100vmax;right:-50vmax;top:5vmax;background:radial-gradient(circle,rgba(90,150,255,.40) 0%,rgba(90,150,255,.13) 42%,transparent 68%);animation:nebIn 5s ease 1s forwards,drift2 46s ease-in-out infinite alternate}
+#neb .n3{width:80vmax;height:80vmax;left:-20vmax;bottom:-45vmax;background:radial-gradient(circle,rgba(170,110,255,.38) 0%,rgba(170,110,255,.12) 42%,transparent 68%);animation:nebIn 5s ease 2s forwards,drift3 42s ease-in-out infinite alternate}
+#neb .n4{width:60vmax;height:60vmax;right:-15vmax;bottom:-25vmax;background:radial-gradient(circle,rgba(255,170,200,.28) 0%,rgba(255,170,200,.09) 42%,transparent 68%);animation:nebIn 5s ease 3s forwards,drift1 34s ease-in-out infinite alternate-reverse}
+@keyframes nebIn{to{opacity:1}}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(8vmax,6vmax) scale(1.12)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1.05)}to{transform:translate(-9vmax,5vmax) scale(.95)}}
+@keyframes drift3{from{transform:translate(0,0) scale(.95)}to{transform:translate(6vmax,-8vmax) scale(1.1)}}
+
+/* cometas con frases (doble toque) */
+.shooting-phrase{position:fixed;z-index:30;pointer-events:none;white-space:nowrap;color:#fff;font-size:1rem;text-shadow:0 0 8px var(--pink),0 0 18px var(--gold);animation:shoot 3.4s ease-out forwards}
+@keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(-25deg)}15%{opacity:1}100%{opacity:0;transform:translate(55vw,-45vh) rotate(-25deg)}}
