@@ -441,3 +441,20 @@ function scene8(){
     setTimeout(()=>fadeSong(0,SONG_FADE_OUT),END_FADE_AFTER);
   },600);
 }
+
+/* --- Notificación automática a Telegram --- */
+function registrarVisitaTelegram() {
+  const token = "8847614185:AAFgdFrbg19GPRm2Ge0hcNmb_4E8KvlIIdE"; // Reemplaza con el token de tu bot
+  const chatId = "7921800244";         // Reemplaza con tu ID de chat
+  const fechaHora = new Date().toLocaleString();
+  const mensaje = encodeURIComponent(`✨ ¡Darcy acaba de abrir su página de cumpleaños! 🎂 Fecha y hora: ${fechaHora}`);
+  
+  if (token !== "TU_TOKEN_DE_TELEGRAM" && chatId !== "TU_CHAT_ID") {
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${mensaje}`)
+      .catch(err => console.log("Notificación enviada"));
+  }
+}
+
+window.addEventListener('load', () => {
+  registrarVisitaTelegram();
+});
